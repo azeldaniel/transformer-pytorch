@@ -4,13 +4,13 @@ import math
 
 class Transformer(torch.nn.Module):
 
-    def init(self, num_tokens, num_inputs, num_heads, num_hidden, num_layers, dropout=0.5):
+    def __init__(self, num_tokens, num_inputs, num_heads, num_hidden, num_layers, dropout=0.5):
         super(Transformer, self).__init__()
 
         self.input_mask = None
         self.num_inputs = num_inputs
 
-        self.position_encoder = PositionEncoder(num_inputs, dropout)
+        self.position_encoder = PositionalEncoding(num_inputs, dropout)
         self.transformer_encoder = torch.nn.TransformerEncoder(
             torch.nn.TransformerEncoderLayer(
                 num_inputs, num_heads, num_hidden, dropout),
